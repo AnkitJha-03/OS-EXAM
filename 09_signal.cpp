@@ -14,6 +14,16 @@ int main() {
 
     if (pid == 0) { // Child process
         signal(SIGUSR1, handler);  // Register signal handler
+        // struct sigaction sa;
+        // sa.sa_handler = handler;      // Set handler function
+        // sigemptyset(&sa.sa_mask);     // Don’t block any signals during handler
+        // sa.sa_flags = 0;              // No special flags
+
+        // if (sigaction(SIGUSR1, &sa, NULL) == -1) {
+        //     perror("sigaction");
+        //     return 1;
+        // }
+
         cout << "Child: Waiting for SIGUSR1 from parent..." << endl;
         while (true) {
             pause(); // Wait for signal
